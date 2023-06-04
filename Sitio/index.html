@@ -1,13 +1,69 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/index.css">
-    <title>Tripware</title>
+    <title>Seliam Solutions</title>
 </head>
+
 <body>
-    Mi primer pagina
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="quienes-somos.html">Quiénes somos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div id="pageContent"></div>
+
+        <div class="carousel">
+            <img src="../media/camaras.webp" alt="Cámaras">
+            <img src="../media/pc.jpg" alt="PC">
+            <img src="../media/web.jpg" alt="Web">
+            <img src="../media/wifi.jpg" alt="WiFi">
+        </div>
+
+    </main>
+
+    <script>
+        function loadPage(pageUrl) {
+            var pageContent = document.getElementById('pageContent');
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    pageContent.innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", pageUrl, true);
+            xhttp.send();
+        }
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var carousel = document.querySelector('.carousel');
+            carousel.style.display = 'flex'; 
+        });
+
+        var carouselImages = document.querySelectorAll('.carousel img');
+        var currentImageIndex = 0;
+
+        function rotateCarousel() {
+            carouselImages[currentImageIndex].style.display = 'none'; 
+            currentImageIndex = (currentImageIndex + 1) % carouselImages.length; 
+            carouselImages[currentImageIndex].style.display = 'block'; 
+        }
+
+        setInterval(rotateCarousel, 3000);
+    </script>
+
 </body>
+
 </html>
